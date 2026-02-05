@@ -53,8 +53,11 @@
 
   <script>
     async function sendAnswer(answer) {
-      // FREE endpoint that stores responses anonymously
-      await fetch("https://formspree.io/f/mzzpbyyb", {
+
+      // 🔴 PASTE your Formspree endpoint between the quotes below
+      const endpoint = "PASTE_YOUR_FORM_LINK_HERE";
+
+      await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ answer: answer })
