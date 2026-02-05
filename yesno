@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quick Question</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #f2f2f2;
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      text-align: center;
+      max-width: 320px;
+    }
+
+    button {
+      padding: 12px 24px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .yes { background: #4CAF50; color: white; }
+    .no { background: #f44336; color: white; }
+
+    #thanks { display: none; margin-top: 15px; font-weight: bold; }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h3>Do you want me to leave you alone / no calls for a day?</h3>
+
+    <button class="yes" onclick="sendAnswer('YES')">YES</button>
+    <button class="no" onclick="sendAnswer('NO')">NO</button>
+
+    <div id="thanks">Response recorded ✔</div>
+  </div>
+
+  <script>
+    async function sendAnswer(answer) {
+      // FREE endpoint that stores responses anonymously
+      await fetch("https://formspree.io/f/mzzpbyyb", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ answer: answer })
+      });
+
+      document.getElementById("thanks").style.display = "block";
+    }
+  </script>
+</body>
+</html>
